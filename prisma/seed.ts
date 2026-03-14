@@ -813,6 +813,437 @@ const lessonsSeed: Array<{
     ],
   },
   {
+    slug: 'dhuhr-four-rakah-practice',
+    categorySlug: 'prayer-learning-namaz',
+    status: ContentStatus.published,
+    sortOrder: 3,
+    isFeatured: false,
+    videoUrl: 'https://www.youtube.com/watch?v=9ZlB84rqi5o',
+    translations: [
+      {
+        lang: Language.ky,
+        title: 'Бешим намазы: 4 ракаат фарз',
+        shortDescription: 'Бешим намазынын фарз бөлүгүн кадам сайын аткаруу.',
+        description:
+          'Бул сабак бешим намазынын 4 ракаат фарз бөлүгүн башталгычтар үчүн жөнөкөй ирет менен түшүндүрөт.',
+      },
+      {
+        lang: Language.ru,
+        title: 'Зухр: 4 ракаата фарз',
+        shortDescription: 'Пошаговая практика обязательной части зухр-намаза.',
+        description:
+          'Урок показывает последовательность 4 ракаатов фарз зухр-намаза для начинающих.',
+      },
+    ],
+    steps: [
+      {
+        sortOrder: 0,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Ниет кылып, 4 ракаат фарз бешим намазына туруңуз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Сделайте намерение на 4 ракаата фарз зухр-намаза.',
+          },
+        ],
+      },
+      {
+        sortOrder: 1,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '1-2 ракаатта Фатиха жана кошумча сүрө окуңуз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В первых двух ракаатах читайте Аль-Фатиху и дополнительную суру.',
+          },
+        ],
+      },
+      {
+        sortOrder: 2,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Экинчи ракааттан кийин алгачкы отурууну аткарыңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'После второго ракаата выполните первое сидение.',
+          },
+        ],
+      },
+      {
+        sortOrder: 3,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '3-4 ракаатта Фатиха менен улантыңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'В третьем и четвёртом ракаате продолжайте с Аль-Фатихой.',
+          },
+        ],
+      },
+      {
+        sortOrder: 4,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Акыркы отуруу, салават жана салам менен бүтүрүңүз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Завершите последним сидением, салаватом и салямом.',
+          },
+        ],
+      },
+    ],
+    references: [
+      {
+        sortOrder: 0,
+        sourceName: 'Sahih al-Bukhari',
+        title: 'Молитесь так, как видели, что молюсь я',
+        url: 'https://sunnah.com/bukhari:631',
+      },
+      {
+        sortOrder: 1,
+        sourceName: 'YouTube',
+        title: 'Намаз уйронуу - 4 Рекет Парз Бешим Зухур Намазы',
+        url: 'https://www.youtube.com/watch?v=9ZlB84rqi5o',
+      },
+    ],
+  },
+  {
+    slug: 'asr-four-rakah-practice',
+    categorySlug: 'prayer-learning-namaz',
+    status: ContentStatus.published,
+    sortOrder: 4,
+    isFeatured: false,
+    videoUrl: 'https://www.youtube.com/watch?v=AjbsZ_i_I-c',
+    translations: [
+      {
+        lang: Language.ky,
+        title: 'Аср намазы: 4 ракаат фарз',
+        shortDescription: 'Аср намазынын фарз бөлүгүнүн практикалык тартиби.',
+        description:
+          'Бул сабакта аср намазынын 4 ракаат фарзын туура иретте аткаруу көрсөтүлөт.',
+      },
+      {
+        lang: Language.ru,
+        title: 'Аср: 4 ракаата фарз',
+        shortDescription: 'Практика обязательной части аср-намаза.',
+        description:
+          'Пошаговый урок по выполнению 4 ракаатов фарз аср-намаза для начинающих.',
+      },
+    ],
+    steps: [
+      {
+        sortOrder: 0,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Аср намазына ниет кылып, такбир менен баштаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Сделайте намерение на аср и начните с такбира.',
+          },
+        ],
+      },
+      {
+        sortOrder: 1,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '1-2 ракаатта Фатиха жана кошумча сүрө окуңуз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В первых двух ракаатах читайте Аль-Фатиху и дополнительную суру.',
+          },
+        ],
+      },
+      {
+        sortOrder: 2,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Ар бир ракаатта руку жана эки сажданы толук аткарыңыз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В каждом ракаате полноценно выполняйте руку и две саджды.',
+          },
+        ],
+      },
+      {
+        sortOrder: 3,
+        translations: [
+          {
+            lang: Language.ky,
+            content:
+              '3-4 ракаатта Фатиха менен улантып, акыркы отурууга өтүңүз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В 3-4 ракаатах продолжите с Аль-Фатихой и перейдите к последнему сидению.',
+          },
+        ],
+      },
+      {
+        sortOrder: 4,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Ташаххуд, салават жана салам менен намазды аяктаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Завершите намаз ташаххудом, салаватом и салямом.',
+          },
+        ],
+      },
+    ],
+    references: [
+      {
+        sortOrder: 0,
+        sourceName: 'Sahih al-Bukhari',
+        title: 'Молитесь так, как видели, что молюсь я',
+        url: 'https://sunnah.com/bukhari:631',
+      },
+      {
+        sortOrder: 1,
+        sourceName: 'YouTube',
+        title: 'Намаз уйронуу - 4 Рекет Парз Дигер Асыр намазы',
+        url: 'https://www.youtube.com/watch?v=AjbsZ_i_I-c',
+      },
+    ],
+  },
+  {
+    slug: 'maghrib-three-rakah-practice',
+    categorySlug: 'prayer-learning-namaz',
+    status: ContentStatus.published,
+    sortOrder: 5,
+    isFeatured: false,
+    videoUrl: 'https://www.youtube.com/watch?v=XglrIPAUJhk',
+    translations: [
+      {
+        lang: Language.ky,
+        title: 'Шам намазы: 3 ракаат фарз',
+        shortDescription: 'Шам намазынын фарз бөлүгүн ирети менен үйрөнүү.',
+        description:
+          'Бул сабак шам намазынын 3 ракаат фарзын практика форматында көрсөтөт.',
+      },
+      {
+        lang: Language.ru,
+        title: 'Магриб: 3 ракаата фарз',
+        shortDescription:
+          'Пошаговое выполнение обязательной части магриб-намаза.',
+        description:
+          'Урок помогает освоить 3 ракаата фарз магриб-намаза в удобном темпе.',
+      },
+    ],
+    steps: [
+      {
+        sortOrder: 0,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Шам намазына ниет кылып, такбир менен баштаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Сделайте намерение на магриб и начните с такбира.',
+          },
+        ],
+      },
+      {
+        sortOrder: 1,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '1-2 ракаатта Фатиха жана кыска сүрө окуңуз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В первых двух ракаатах читайте Аль-Фатиху и короткую суру.',
+          },
+        ],
+      },
+      {
+        sortOrder: 2,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Экинчи ракааттан кийин алгачкы отурууну жасаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'После второго ракаата выполните первое сидение.',
+          },
+        ],
+      },
+      {
+        sortOrder: 3,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '3-ракаатта Фатиханы окуп, акыркы отурууга өтүңүз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В третьем ракаате прочитайте Аль-Фатиху и перейдите к последнему сидению.',
+          },
+        ],
+      },
+      {
+        sortOrder: 4,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Салават жана салам менен намазды аяктаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Завершите намаз салаватом и салямом.',
+          },
+        ],
+      },
+    ],
+    references: [
+      {
+        sortOrder: 0,
+        sourceName: 'Sahih al-Bukhari',
+        title: 'Молитесь так, как видели, что молюсь я',
+        url: 'https://sunnah.com/bukhari:631',
+      },
+      {
+        sortOrder: 1,
+        sourceName: 'YouTube',
+        title: 'Шам намазы 3-рекет парз женил уйронуу',
+        url: 'https://www.youtube.com/watch?v=XglrIPAUJhk',
+      },
+    ],
+  },
+  {
+    slug: 'isha-four-rakah-practice',
+    categorySlug: 'prayer-learning-namaz',
+    status: ContentStatus.published,
+    sortOrder: 6,
+    isFeatured: false,
+    videoUrl: 'https://www.youtube.com/watch?v=bjP31-QBqXE',
+    translations: [
+      {
+        lang: Language.ky,
+        title: 'Куптан намазы: 4 ракаат фарз',
+        shortDescription: 'Куптан намазынын фарз бөлүгүн кадам сайын аткаруу.',
+        description:
+          'Бул сабак куптан намазынын 4 ракаат фарз бөлүгүн туура окуунун негизин берет.',
+      },
+      {
+        lang: Language.ru,
+        title: 'Иша: 4 ракаата фарз',
+        shortDescription: 'Практика обязательной части иша-намаза.',
+        description:
+          'Урок показывает пошаговое выполнение 4 ракаатов фарз иша-намаза.',
+      },
+    ],
+    steps: [
+      {
+        sortOrder: 0,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Куптан намазына ниет кылып, такбир менен баштаңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'Сделайте намерение на иша и начните с такбира.',
+          },
+        ],
+      },
+      {
+        sortOrder: 1,
+        translations: [
+          {
+            lang: Language.ky,
+            content: '1-2 ракаатта Фатиха жана кошумча сүрө окуңуз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'В 1-2 ракаатах читайте Аль-Фатиху и дополнительную суру.',
+          },
+        ],
+      },
+      {
+        sortOrder: 2,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Экинчи ракааттан кийин алгачкы отурууну аткарыңыз.',
+          },
+          {
+            lang: Language.ru,
+            content: 'После второго ракаата выполните первое сидение.',
+          },
+        ],
+      },
+      {
+        sortOrder: 3,
+        translations: [
+          {
+            lang: Language.ky,
+            content:
+              '3-4 ракаатта Фатиха менен улантып, акыркы отурууга өтүңүз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'В 3-4 ракаатах продолжайте с Аль-Фатихой и перейдите к финальному сидению.',
+          },
+        ],
+      },
+      {
+        sortOrder: 4,
+        translations: [
+          {
+            lang: Language.ky,
+            content: 'Саламдан кийин витр намазы өзүнчө окуларын эске алыңыз.',
+          },
+          {
+            lang: Language.ru,
+            content:
+              'После саляма помните, что витр-намаз совершается отдельно.',
+          },
+        ],
+      },
+    ],
+    references: [
+      {
+        sortOrder: 0,
+        sourceName: 'Sahih al-Bukhari',
+        title: 'Молитесь так, как видели, что молюсь я',
+        url: 'https://sunnah.com/bukhari:631',
+      },
+      {
+        sortOrder: 1,
+        sourceName: 'YouTube',
+        title: 'Намаз уйронуу - 4 Рекет Парз Куптан Иша Намазы',
+        url: 'https://www.youtube.com/watch?v=bjP31-QBqXE',
+      },
+    ],
+  },
+  {
     slug: 'surah-al-fatiha-basic',
     categorySlug: 'short-surahs',
     status: ContentStatus.published,
