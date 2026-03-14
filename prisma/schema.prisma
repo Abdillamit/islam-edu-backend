@@ -1,0 +1,171 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Language {
+  ky
+  ru
+}
+
+enum ContentStatus {
+  draft
+  published
+}
+
+enum MediaType {
+  image
+  audio
+}
+
+model AdminUser {
+  id                String     @id @default(uuid()) @db.Uuid
+  email             String     @unique
+  passwordHash      String
+  fullName          String?
+  isActive          Boolean    @default(true)
+  createdCategories Category[] @relation("CategoryCreatedBy")
+  updatedCategories Category[] @relation("CategoryUpdatedBy")
+  createdLessons    Lesson[]   @relation("LessonCreatedBy")
+  updatedLessons    Lesson[]   @relation("LessonUpdatedBy")
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+model Category {
+  id           String              @id @default(uuid()) @db.Uuid
+  slug         String              @unique
+  iconName     String?
+  sortOrder    Int                 @default(0)
+  status       ContentStatus       @default(draft)
+  translations CategoryTranslation[]
+  lessons      Lesson[]
+  createdById  String?             @db.Uuid
+  updatedById  String?             @db.Uuid
+  createdBy    AdminUser?          @relation("CategoryCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy    AdminUser?          @relation("CategoryUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model CategoryTranslation {
+  id          String   @id @default(uuid()) @db.Uuid
+  categoryId  String   @db.Uuid
+  lang        Language
+  title       String
+  description String?
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([categoryId, lang])
+  @@index([lang])
+}
+
+model Lesson {
+  id             String           @id @default(uuid()) @db.Uuid
+  categoryId     String           @db.Uuid
+  slug           String           @unique
+  status         ContentStatus    @default(draft)
+  sortOrder      Int              @default(0)
+  isFeatured     Boolean          @default(false)
+  imageUrl       String?
+  audioUrl       String?
+  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  translations   LessonTranslation[]
+  steps          LessonStep[]
+  bookmarks      Bookmark[]
+  progresses     UserProgress[]
+  mediaResources MediaResource[]
+  createdById    String?          @db.Uuid
+  updatedById    String?          @db.Uuid
+  createdBy      AdminUser?       @relation("LessonCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy      AdminUser?       @relation("LessonUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([categoryId, status, sortOrder])
+  @@index([isFeatured, status])
+}
+
+model LessonTranslation {
+  id               String   @id @default(uuid()) @db.Uuid
+  lessonId         String   @db.Uuid
+  lang             Language
+  title            String
+  shortDescription String
+  description      String?
+  lesson           Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([lessonId, lang])
+  @@index([lang])
+}
+
+model LessonStep {
+  id           String                  @id @default(uuid()) @db.Uuid
+  lessonId     String                  @db.Uuid
+  sortOrder    Int                     @default(0)
+  lesson       Lesson                  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  translations LessonStepTranslation[]
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+
+  @@index([lessonId, sortOrder])
+}
+
+model LessonStepTranslation {
+  id        String     @id @default(uuid()) @db.Uuid
+  stepId    String     @db.Uuid
+  lang      Language
+  content   String
+  step      LessonStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@unique([stepId, lang])
+  @@index([lang])
+}
+
+model UserProgress {
+  id          String   @id @default(uuid()) @db.Uuid
+  deviceId    String
+  lessonId    String   @db.Uuid
+  completedAt DateTime @default(now())
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([deviceId, lessonId])
+  @@index([deviceId, completedAt])
+}
+
+model Bookmark {
+  id        String   @id @default(uuid()) @db.Uuid
+  deviceId  String
+  lessonId  String   @db.Uuid
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([deviceId, lessonId])
+  @@index([deviceId, createdAt])
+}
+
+model MediaResource {
+  id        String    @id @default(uuid()) @db.Uuid
+  lessonId  String    @db.Uuid
+  type      MediaType
+  url       String
+  lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([lessonId, type])
+}
