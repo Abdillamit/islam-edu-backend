@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { DeviceIdGuard } from '../../common/guards/device-id.guard';
-import { DeviceRequest } from '../../common/interfaces/device-request.interface';
+import type { DeviceRequest } from '../../common/interfaces/device-request.interface';
 import { MarkLessonCompletedDto } from './dto/mark-lesson-completed.dto';
 import { ProgressQueryDto } from './dto/progress-query.dto';
 import { ProgressService } from './progress.service';

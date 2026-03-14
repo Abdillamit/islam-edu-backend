@@ -14,7 +14,7 @@ import {
 import { Language } from '@prisma/client';
 import { CurrentAdmin } from '../../common/decorators/current-admin.decorator';
 import { AdminJwtAuthGuard } from '../../common/guards/admin-jwt-auth.guard';
-import { AuthenticatedAdmin } from '../../common/interfaces/authenticated-admin.interface';
+import type { AuthenticatedAdmin } from '../../common/interfaces/authenticated-admin.interface';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';

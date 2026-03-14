@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { DeviceIdGuard } from '../../common/guards/device-id.guard';
-import { DeviceRequest } from '../../common/interfaces/device-request.interface';
+import type { DeviceRequest } from '../../common/interfaces/device-request.interface';
 import { AddBookmarkDto } from './dto/add-bookmark.dto';
 import { BookmarkQueryDto } from './dto/bookmark-query.dto';
 import { BookmarksService } from './bookmarks.service';

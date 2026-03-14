@@ -16,7 +16,7 @@ import { Language } from '@prisma/client';
 import { CurrentAdmin } from '../../common/decorators/current-admin.decorator';
 import { AdminJwtAuthGuard } from '../../common/guards/admin-jwt-auth.guard';
 import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
-import { AuthenticatedAdmin } from '../../common/interfaces/authenticated-admin.interface';
+import type { AuthenticatedAdmin } from '../../common/interfaces/authenticated-admin.interface';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
 import { UpsertLessonTranslationDto } from './dto/upsert-lesson-translation.dto';
