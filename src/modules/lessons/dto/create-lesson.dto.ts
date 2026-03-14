@@ -52,6 +52,28 @@ export class LessonStepInputDto {
   translations: LessonStepTranslationInputDto[];
 }
 
+export class LessonReferenceInputDto {
+  @IsString()
+  @MaxLength(140)
+  title: string;
+
+  @IsString()
+  @MaxLength(140)
+  sourceName: string;
+
+  @IsUrl()
+  url: string;
+
+  @IsOptional()
+  @IsString()
+  verificationNote?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  sortOrder?: number;
+}
+
 export class CreateLessonDto {
   @IsUUID()
   categoryId: string;
@@ -81,6 +103,10 @@ export class CreateLessonDto {
   @IsUrl()
   audioUrl?: string;
 
+  @IsOptional()
+  @IsUrl()
+  videoUrl?: string;
+
   @IsArray()
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
@@ -92,4 +118,10 @@ export class CreateLessonDto {
   @ValidateNested({ each: true })
   @Type(() => LessonStepInputDto)
   steps?: LessonStepInputDto[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => LessonReferenceInputDto)
+  references?: LessonReferenceInputDto[];
 }

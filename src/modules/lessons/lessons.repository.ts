@@ -33,6 +33,11 @@ const lessonDetailInclude = {
     },
   },
   mediaResources: true,
+  references: {
+    orderBy: {
+      sortOrder: 'asc',
+    },
+  },
 } satisfies Prisma.LessonInclude;
 
 @Injectable()
@@ -167,7 +172,11 @@ export class LessonsRepository {
   }
 
   create(dto: CreateLessonDto, adminId: string) {
-    const mediaData = this.mapMediaResources(dto.imageUrl, dto.audioUrl);
+    const mediaData = this.mapMediaResources(
+      dto.imageUrl,
+      dto.audioUrl,
+      dto.videoUrl,
+    );
 
     return this.prisma.lesson.create({
       data: {
@@ -207,15 +216,28 @@ export class LessonsRepository {
                 create: mediaData,
               }
             : undefined,
+        references: dto.references
+          ? {
+              create: dto.references.map((reference) => ({
+                title: reference.title,
+                sourceName: reference.sourceName,
+                url: reference.url,
+                verificationNote: reference.verificationNote,
+                sortOrder: reference.sortOrder ?? 0,
+              })),
+            }
+          : undefined,
       },
       include: lessonDetailInclude,
     });
   }
 
   async update(id: string, dto: UpdateLessonDto, adminId: string) {
-    const { translations, steps, ...lessonPayload } = dto;
+    const { translations, steps, references, videoUrl, ...lessonPayload } = dto;
     const mediaPayloadProvided =
-      dto.imageUrl !== undefined || dto.audioUrl !== undefined;
+      dto.imageUrl !== undefined ||
+      dto.audioUrl !== undefined ||
+      dto.videoUrl !== undefined;
 
     return this.prisma.$transaction(async (transactionClient) => {
       await transactionClient.lesson.update({
@@ -282,6 +304,15 @@ export class LessonsRepository {
           select: {
             imageUrl: true,
             audioUrl: true,
+            mediaResources: {
+              where: {
+                type: MediaType.video,
+              },
+              select: {
+                url: true,
+              },
+              take: 1,
+            },
           },
         });
 
@@ -289,9 +320,11 @@ export class LessonsRepository {
           where: { lessonId: id },
         });
 
+        const existingVideoUrl = currentLesson.mediaResources[0]?.url;
         const mediaData = this.mapMediaResources(
           currentLesson.imageUrl ?? undefined,
           currentLesson.audioUrl ?? undefined,
+          videoUrl ?? existingVideoUrl,
         );
 
         if (mediaData.length > 0) {
@@ -300,6 +333,25 @@ export class LessonsRepository {
               lessonId: id,
               type: resource.type,
               url: resource.url,
+            })),
+          });
+        }
+      }
+
+      if (references) {
+        await transactionClient.lessonReference.deleteMany({
+          where: { lessonId: id },
+        });
+
+        if (references.length > 0) {
+          await transactionClient.lessonReference.createMany({
+            data: references.map((reference) => ({
+              lessonId: id,
+              title: reference.title,
+              sourceName: reference.sourceName,
+              url: reference.url,
+              verificationNote: reference.verificationNote,
+              sortOrder: reference.sortOrder ?? 0,
             })),
           });
         }
@@ -369,7 +421,11 @@ export class LessonsRepository {
     });
   }
 
-  private mapMediaResources(imageUrl?: string, audioUrl?: string) {
+  private mapMediaResources(
+    imageUrl?: string,
+    audioUrl?: string,
+    videoUrl?: string,
+  ) {
     const mediaResources: Array<{ type: MediaType; url: string }> = [];
 
     if (imageUrl) {
@@ -383,6 +439,13 @@ export class LessonsRepository {
       mediaResources.push({
         type: MediaType.audio,
         url: audioUrl,
+      });
+    }
+
+    if (videoUrl) {
+      mediaResources.push({
+        type: MediaType.video,
+        url: videoUrl,
       });
     }
 

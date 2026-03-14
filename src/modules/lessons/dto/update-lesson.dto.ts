@@ -50,6 +50,28 @@ class LessonStepUpdateDto {
   translations: LessonStepTranslationUpdateDto[];
 }
 
+class LessonReferenceUpdateDto {
+  @IsString()
+  @MaxLength(140)
+  title: string;
+
+  @IsString()
+  @MaxLength(140)
+  sourceName: string;
+
+  @IsUrl()
+  url: string;
+
+  @IsOptional()
+  @IsString()
+  verificationNote?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  sortOrder?: number;
+}
+
 export class UpdateLessonDto {
   @IsOptional()
   @IsUUID()
@@ -82,6 +104,10 @@ export class UpdateLessonDto {
   audioUrl?: string;
 
   @IsOptional()
+  @IsUrl()
+  videoUrl?: string;
+
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => LessonTranslationUpdateDto)
@@ -92,4 +118,10 @@ export class UpdateLessonDto {
   @ValidateNested({ each: true })
   @Type(() => LessonStepUpdateDto)
   steps?: LessonStepUpdateDto[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => LessonReferenceUpdateDto)
+  references?: LessonReferenceUpdateDto[];
 }

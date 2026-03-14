@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Language } from '@prisma/client';
+import { Language, MediaType } from '@prisma/client';
 import { getTotalPages } from '../../common/utils/pagination.util';
 import {
   pickTranslation,
@@ -188,6 +188,20 @@ export class LessonsService {
           content: stepTranslation?.content ?? '',
         };
       }),
+      videoResources: lesson.mediaResources
+        .filter((resource) => resource.type === MediaType.video)
+        .map((resource) => ({
+          id: resource.id,
+          url: resource.url,
+        })),
+      references: lesson.references.map((reference) => ({
+        id: reference.id,
+        sourceName: reference.sourceName,
+        title: reference.title,
+        url: reference.url,
+        verificationNote: reference.verificationNote ?? '',
+        sortOrder: reference.sortOrder,
+      })),
       mediaResources: lesson.mediaResources,
     };
   }
